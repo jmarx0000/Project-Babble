@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.49562914.css",
-    "main.js": "/static/js/main.1310dca9.js",
-    "static/js/488.f95a0f0e.chunk.js": "/static/js/488.f95a0f0e.chunk.js",
-    "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/index.html",
-    "main.49562914.css.map": "/static/css/main.49562914.css.map",
-    "main.1310dca9.js.map": "/static/js/main.1310dca9.js.map",
-    "488.f95a0f0e.chunk.js.map": "/static/js/488.f95a0f0e.chunk.js.map"
+    "main.css": "/Project-Babble/static/css/main.f855e6bc.css",
+    "main.js": "/Project-Babble/static/js/main.43d5d741.js",
+    "static/js/488.f95a0f0e.chunk.js": "/Project-Babble/static/js/488.f95a0f0e.chunk.js",
+    "static/media/logo.svg": "/Project-Babble/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/Project-Babble/index.html",
+    "main.f855e6bc.css.map": "/Project-Babble/static/css/main.f855e6bc.css.map",
+    "main.43d5d741.js.map": "/Project-Babble/static/js/main.43d5d741.js.map",
+    "488.f95a0f0e.chunk.js.map": "/Project-Babble/static/js/488.f95a0f0e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.49562914.css",
-    "static/js/main.1310dca9.js"
+    "static/css/main.f855e6bc.css",
+    "static/js/main.43d5d741.js"
   ]
 }
