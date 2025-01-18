@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Groq from "groq-sdk";
 import './Styles/Homepage.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 function Homepage() {
   const [userInput, setUserInput] = useState('');
@@ -65,22 +66,29 @@ function Homepage() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="chat-container">
+      <div className="conversation">
+        <h2>Conversation:</h2>
+        {conversationHistory.slice(1).map((message, index) => (
+          <div
+            key={index}
+            className={`message ${message.role === 'user' ? 'user-message' : 'model-message'}`}
+          >
+            <p>{message.content}</p>
+          </div>
+        ))}
+      </div>
+      <form onSubmit={handleSubmit} className="input-form">
         <input
           type="text"
           value={userInput}
           onChange={handleInputChange}
           placeholder="Enter text"
         />
-        <button type="submit">Submit</button>
+        <button type="submit">
+          <i className="fas fa-paper-plane"></i>
+        </button>
       </form>
-      <div className="conversation">
-        <h2>Conversation:</h2>
-        {conversationHistory.map((message, index) => (
-          <p key={index} className={message.role}>{message.content}</p>
-        ))}
-      </div>
     </div>
   );
 }
