@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Groq from "groq-sdk";
 import './Styles/Homepage.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -9,6 +9,7 @@ function Homepage() {
     { role: "system", content: "" }
   ]);
   const [apiResponse, setApiResponse] = useState('');
+  const conversationEndRef = useRef(null);
 
   // groq api key - consider moving this to a .env file
   const groqAPI = process.env.REACT_APP_GROQ_API_KEY;
@@ -41,13 +42,21 @@ function Homepage() {
       { role: "user", content: userInput }
     ];
 
+    setConversationHistory(newMessages);
+
     try {
       const response = await getGroqChatCompletion(newMessages);
       console.log(userInput);
       console.log(conversationHistory);
       if (response.choices && response.choices[0] && response.choices[0].message && response.choices[0].message.content) {
         const assistantMessage = { role: "assistant", content: response.choices[0].message.content };
-        setConversationHistory([...newMessages, assistantMessage]);
+        
+        // timeout to make it feel more like another person is responding
+        setTimeout(() => {
+          // Use functional form of setState to ensure you are working with the latest state
+          setConversationHistory(prevHistory => [...prevHistory, assistantMessage]);
+        }, 500);
+
         setApiResponse(response.choices[0].message.content);
         console.log(response);
       } else {
@@ -58,6 +67,10 @@ function Homepage() {
       setApiResponse("An error occurred. Please try again.");
     }
   };
+
+  useEffect(() => {
+    conversationEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [conversationHistory]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -77,6 +90,7 @@ function Homepage() {
             <p>{message.content}</p>
           </div>
         ))}
+      <div ref={conversationEndRef} />
       </div>
       <form onSubmit={handleSubmit} className="input-form">
         <input
